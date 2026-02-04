@@ -26,3 +26,9 @@ def create_book(data:Bookstore , db:Session=Depends(get_DB)):
     db.commit()
     db.refresh(new_book)
     return new_book
+
+
+@app.get("/get-book")
+def getBook(db : Session = Depends(get_DB)):
+    books = db.query(model.Book).all()
+    return books
